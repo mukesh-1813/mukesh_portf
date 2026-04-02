@@ -14,4 +14,4 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        value: "sqlite:///db.sqlite3"
+        sync: false

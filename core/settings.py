@@ -32,13 +32,28 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mukesh-portf.onrender.com', 'localhost', '127.0.0.1', '*']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    ALLOWED_HOSTS = ['mukeshbudi.onrender.com', 'localhost', '127.0.0.1', '*']
 
+# CSRF settings for Render
+CSRF_TRUSTED_ORIGINS = [
+    'https://mukeshbudi.onrender.com',
+]
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
 
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000 # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
@@ -143,6 +158,8 @@ STORAGES = {
     },
 
 }
+WHITENOISE_USE_FINDERS = True
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
