@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects | Mukesh Kumar{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-12">
+        <div class="mb-16">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-4 text-white">PROJECTS</h1>
+            <div class="w-20 h-1.5 bg-primary rounded-full mb-6"></div>
+            <p class="text-text_secondary text-xl max-w-2xl font-medium">A curated selection of my technical projects and experiments.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {% for project in projects %}
+            <div class="card group flex flex-col h-full overflow-hidden rounded-[2rem]">
+                {% if project.image %}
+                <div class="aspect-[16/10] relative overflow-hidden bg-bg_deep border-b border-border_color">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                </div>
+                {% endif %}
+                <div class="p-8 flex flex-col flex-grow">
+                    <h2 class="text-2xl font-bold mb-3 leading-tight text-white">{{ project.title }}</h2>
+                    <p class="text-text_secondary text-sm mb-6 line-clamp-3">{{ project.short_description }}</p>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            {% for tag in project.tech_stack.split %}
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary_accent bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">{{ tag|cut:"," }}</span>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'portfolio:project_detail' project.pk %}" class="inline-flex items-center text-sm font-black uppercase tracking-widest text-white hover:text-primary transition-all">
+                            View Case Study
+                            <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full py-40 text-center text-text_secondary italic bg-surface/30 border border-dashed border-border_color rounded-[2rem]">
+                The list is currently empty. More greatness coming soon.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

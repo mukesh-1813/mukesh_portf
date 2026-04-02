@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Get In Touch | Mukesh Kumar{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-12 flex flex-col items-center">
+        <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-center text-white">LET'S CONNECT</h1>
+        <div class="w-20 h-1.5 bg-primary rounded-full mb-12"></div>
+        <p class="text-text_secondary text-xl max-w-xl mb-20 text-center font-medium leading-relaxed">Have a project in mind or want to talk about cybersecurity? Reach out via the form below.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 w-full mb-24">
+            <!-- Contact Form -->
+            <div class="card p-10 md:p-14 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+                <form action="#" method="POST" class="space-y-8 relative z-10">
+                    {% csrf_token %}
+                    <div class="space-y-3">
+                        <label for="name" class="text-xs font-black uppercase tracking-[0.2em] text-text_secondary">Full Name</label>
+                        <input type="text" id="name" name="name" required class="w-full bg-bg_deep border border-border_color rounded-2xl p-5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-white placeholder-gray-600" placeholder="John Doe">
+                    </div>
+                    <div class="space-y-3">
+                        <label for="email" class="text-xs font-black uppercase tracking-[0.2em] text-text_secondary">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-bg_deep border border-border_color rounded-2xl p-5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-white placeholder-gray-600" placeholder="john@example.com">
+                    </div>
+                    <div class="space-y-3">
+                        <label for="message" class="text-xs font-black uppercase tracking-[0.2em] text-text_secondary">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full bg-bg_deep border border-border_color rounded-2xl p-5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-white placeholder-gray-600 resize-none" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Info & Resume -->
+            <div class="flex flex-col justify-center space-y-16">
+                <div class="space-y-6">
+                    <h3 class="text-xs font-black uppercase tracking-[0.2em] text-primary">Direct Contact</h3>
+                    <p class="text-3xl md:text-4xl font-black text-white hover:text-primary transition-colors cursor-default tracking-tighter">
+                        {{ profile.email|default:"hello@mukesh.dev" }}
+                    </p>
+                    <div class="flex space-x-8 pt-4">
+                        {% if profile.github_link %}
+                        <a href="{{ profile.github_link }}" class="text-sm font-black border-b-2 border-border_color pb-1 hover:text-white hover:border-primary transition-all text-text_secondary uppercase tracking-widest">GITHUB</a>
+                        {% endif %}
+                        {% if profile.linkedin_link %}
+                        <a href="{{ profile.linkedin_link }}" class="text-sm font-black border-b-2 border-border_color pb-1 hover:text-white hover:border-primary transition-all text-text_secondary uppercase tracking-widest">LINKEDIN</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="bg-surface/50 border border-border_color p-12 rounded-[3.5rem] relative overflow-hidden">
+                    <div class="absolute bottom-0 right-0 w-40 h-40 bg-secondary_accent/5 rounded-full -br-20 -bb-20 blur-3xl"></div>
+                    <h3 class="text-xs font-black uppercase tracking-[0.2em] text-secondary_accent mb-8">Career Overview</h3>
+                    <p class="text-text_secondary mb-10 text-lg leading-relaxed font-medium italic">Interested in working together? Download my full resume for technical details and past experience.</p>
+                    {% if active_resume %}
+                        <a href="{{ active_resume.file.url }}" download class="btn-primary inline-flex items-center space-x-4 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs">
+                            <span>Download Resume</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    {% else %}
+                        <p class="text-text_secondary italic text-sm border-l-2 border-primary pl-4">Resume is being updated. Contact me directly for the latest version.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
