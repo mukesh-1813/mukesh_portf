@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">Mukesh Portfolio Admin</a></div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/admin_premium.css' %}">
+{% endblock %}
+
+{% block nav-global %}
+<nav class="custom-global-nav">
+  <div class="nav-links-container">
+    <a href="/" class="custom-nav-btn" target="_blank">🔍 View Live Site</a>
+    <a href="/admin/portfolio/project/" class="custom-nav-btn">📁 Projects</a>
+    <a href="/admin/portfolio/profile/" class="custom-nav-btn">👤 Profile</a>
+    <a href="/admin/auth/user/" class="custom-nav-btn">👥 Users</a>
+  </div>
+</nav>
+{% endblock %}
