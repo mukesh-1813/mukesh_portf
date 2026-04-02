@@ -1,0 +1,260 @@
+:root {
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --bg-dark: #0f172a;
+  --bg-panel: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(15, 23, 42, 0.85);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+  --header-color: #ffffff;
+  --body-fg: #f8fafc;
+  --body-bg: #0f172a;
+  --font-family-primary: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--body-fg);
+  background-color: var(--body-bg) !important;
+  font-family: var(--font-family-primary) !important;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header & Branding */
+#header {
+  background: var(--header-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: var(--header-color);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  flex-wrap: wrap;
+}
+
+#branding h1 {
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  color: var(--text-main);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#branding a:link, #branding a:visited {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+/* Custom Navigation Bar */
+.custom-global-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.custom-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid transparent;
+}
+
+.custom-nav-link:hover {
+  color: var(--text-main);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-1px);
+}
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Breadcrumbs */
+div.breadcrumbs {
+  background: rgba(15, 23, 42, 0.6);
+  padding: 12px 30px;
+  color: var(--text-muted);
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+div.breadcrumbs a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+div.breadcrumbs a:hover {
+  color: var(--primary-hover);
+}
+
+/* Main Content area */
+#content {
+  padding: 30px;
+}
+
+.module {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.module caption, .module h2 {
+  background: rgba(255,255,255,0.03) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-family-primary);
+  font-weight: 600;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background: rgba(0,0,0,0.2) !important;
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: 12px 20px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+td, th {
+  padding: 12px 20px !important;
+  color: var(--text-main) !important;
+}
+
+td a, th a {
+  color: var(--primary) !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+td a:hover, th a:hover {
+  color: var(--primary-hover) !important;
+  text-decoration: underline;
+}
+
+/* Forms & Inputs */
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=number], select, textarea {
+  background: rgba(0,0,0,0.3) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-main) !important;
+  padding: 10px 15px !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-family-primary);
+  transition: all 0.3s ease;
+}
+
+input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
+  border-color: var(--primary) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Buttons */
+.button, input[type=submit], input[type=button], .submit-row input {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover)) !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--shadow-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button:hover, input[type=submit]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.button.default, input[type=submit].default {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Login Page specific */
+.login #container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.login #content {
+  background: var(--bg-panel);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login #header {
+  display: none;
+}
+
+/* Hide some default Django features if they clutter */
+.nav-sidebar {
+  background: var(--bg-panel) !important;
+  border-right: 1px solid var(--border) !important;
+}
